@@ -7,4 +7,9 @@
     <string name="default_player_name_text">Player one</string>
     <string name="start_game_btn_text">Start game</string>
     <string name="default_description">playing_card</string>
+    <string name="home_button_text">Home</string>
+    <string name="higher_button_text">Higher</string>
+    <string name="lower_button_text">Lower</string>
+    <string name="cards_left_text">Cards left:</string>
+    <string name="default_card_count">52</string>
 </resources>
