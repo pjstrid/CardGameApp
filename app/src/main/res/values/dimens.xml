@@ -3,5 +3,13 @@
     <dimen name="card_width">84dp</dimen>
     <dimen name="card_height">122dp</dimen>
     <dimen name="card_margin">32dp</dimen>
-    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="elevation_effect_margin_width">8dp</dimen>
+    <dimen name="elevation_effect_margin_height">6dp</dimen>
+    <dimen name="no_elevation">0dp</dimen>
+    <dimen name="draw_pile_height">128dp</dimen>
+    <dimen name="draw_pile_width">92dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_18dp">18dp</dimen>
 </resources>
