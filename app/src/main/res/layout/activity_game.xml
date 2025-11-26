@@ -23,12 +23,11 @@
         android:id="@+id/playing_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
         android:backgroundTint="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@id/button_higher"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,6 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_one"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -70,6 +70,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_two"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -87,6 +88,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_three"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -105,6 +107,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_four"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -123,6 +126,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_five"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -141,6 +145,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image_view_six"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -159,6 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/card_view_four">
 
                 <ImageView
+                    android:id="@+id/image_view_seven"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -177,6 +183,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/card_view_five">
 
                 <ImageView
+                    android:id="@+id/image_view_eight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -195,6 +202,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/card_view_six">
 
                 <ImageView
+                    android:id="@+id/image_view_nine"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description" />
@@ -205,6 +213,7 @@
 
 
     <Button
+        android:id="@+id/button_higher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_48dp"
@@ -213,11 +222,10 @@
         android:textColor="@color/bright_green"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/draw_pile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playing_field" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_lower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_48dp"
@@ -226,8 +234,7 @@
         android:textColor="@color/red"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/draw_pile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playing_field" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <androidx.cardview.widget.CardView
@@ -266,7 +273,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/pic_bottom_of_draw_pile"
+                    android:id="@+id/image_bottom_of_draw_pile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
@@ -286,7 +293,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/pic_draw_pile_top_card"
+                    android:id="@+id/image_draw_pile_top_card"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
