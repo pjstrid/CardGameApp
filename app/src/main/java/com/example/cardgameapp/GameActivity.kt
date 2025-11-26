@@ -1,21 +1,24 @@
 package com.example.cardgameapp
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.collection.emptyLongSet
 import com.example.cardgameapp.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
 
-    private lateinit var deckOfCards: MutableList<String>
+    private lateinit var deckOfCards: MutableList<Card>
 
     private var cardCount = 0
     private var cardsLeft = 43
     private lateinit var currentPile : ImageView
     private var pileCount = 1
-    private lateinit var currentCard: String
+    private lateinit var currentCard: Card
     private var currentCardResId = 0
+    private var gameRunning = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +33,38 @@ class GameActivity : AppCompatActivity() {
         createStartLayout()
 
 //      Game starts
-        currentPile = determinePile(pileCount)
-        currentCard = deckOfCards[cardCount]
-        currentCardResId = showCard(currentCard)
+//        while (gameRunning) {
+            currentPile = determinePile(pileCount)
+            currentCard = deckOfCards[cardCount]
+            deckOfCards.removeFirst()
+
+
+
+            openPile()
+//        }
+
+
+//      showCard(deckOfCards[cardCount])
+
+        binding.buttonHigher.setOnClickListener {
+
+            // check guess
+            val correctGuess = checkGuess()
+            if (correctGuess) {
+                currentCard = deckOfCards[0]
+                openPile()
+            }
+            deckOfCards.removeFirst()
+        }
+
+
+        binding.buttonLower.setOnClickListener {
+
+        }
+    }
+
+    private fun openPile() {
+        currentCardResId = showCard(currentCard.name)
 
         when (pileCount) {
             1 -> binding.imageViewOne.setImageResource(currentCardResId)
@@ -45,17 +77,30 @@ class GameActivity : AppCompatActivity() {
             8 -> binding.imageViewEight.setImageResource(currentCardResId)
             9 -> binding.imageViewNine.setImageResource(currentCardResId)
         }
+    }
 
+    private fun checkGuess() : Boolean {
+        var correctGuess = false
 
-//      showCard(deckOfCards[cardCount])
-
-        binding.buttonHigher.setOnClickListener {
-
+        if (deckOfCards[0].value == 1) {
+            if (currentCard.value == 1) {
+                Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name} ")
+                correctGuess = false
+            } else {
+                Log.e("!!!", "true, ${deckOfCards[0].name} is higher than ${currentCard.name}")
+                correctGuess = true
+            }
+        } else if (deckOfCards[0].value == currentCard.value) {
+            Log.e("!!!", "false, ${deckOfCards[0].name} is the same value as ${currentCard.name}")
+            correctGuess = false
+        } else if (deckOfCards[0].value < currentCard.value) {
+            Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+            correctGuess = false
+        } else if (deckOfCards[0].value > currentCard.value) {
+            Log.e("!!!", "true, ${deckOfCards[0].name} is higher than ${currentCard.name}")
+            correctGuess = true
         }
-
-        binding.buttonLower.setOnClickListener {
-
-        }
+        return correctGuess
     }
 
     //
@@ -125,10 +170,58 @@ class GameActivity : AppCompatActivity() {
 
     private fun createShuffledDeck() {
         deckOfCards = mutableListOf(
-            "h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "h10", "h11", "h12", "h13",
-            "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13",
-            "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "d10", "d11", "d12", "d13",
-            "c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12", "c13"
+            Card("h1", 1,R.drawable.hearts_1),
+            Card("h2", 2,R.drawable.hearts_2),
+            Card("h3", 3,R.drawable.hearts_3),
+            Card("h4", 4,R.drawable.hearts_4),
+            Card("h5", 5,R.drawable.hearts_5),
+            Card("h6", 6,R.drawable.hearts_6),
+            Card("h7", 7,R.drawable.hearts_7),
+            Card("h8", 8,R.drawable.hearts_8),
+            Card("h9", 9,R.drawable.hearts_9),
+            Card("h10", 10,R.drawable.hearts_10),
+            Card("h11", 11,R.drawable.hearts_jack),
+            Card("h12", 12,R.drawable.hearts_queen),
+            Card("h13", 13,R.drawable.hearts_king),
+            Card("s1", 1,R.drawable.spades_1),
+            Card("s2", 2,R.drawable.spades_2),
+            Card("s3", 3,R.drawable.spades_3),
+            Card("s4", 4,R.drawable.spades_4),
+            Card("s5", 5,R.drawable.spades_5),
+            Card("s6", 6,R.drawable.spades_6),
+            Card("s7", 7,R.drawable.spades_7),
+            Card("s8", 8,R.drawable.spades_8),
+            Card("s9", 9,R.drawable.spades_9),
+            Card("s10", 10,R.drawable.spades_10),
+            Card("s11", 11,R.drawable.spades_jack),
+            Card("s12", 12,R.drawable.spades_queen),
+            Card("s13", 13,R.drawable.spades_king),
+            Card("c1", 1, R.drawable.clubs_1),
+            Card("c2", 2, R.drawable.clubs_2),
+            Card("c3", 3, R.drawable.clubs_3),
+            Card("c4", 4, R.drawable.clubs_4),
+            Card("c5", 5, R.drawable.clubs_5),
+            Card("c6", 6, R.drawable.clubs_6),
+            Card("c7", 7, R.drawable.clubs_7),
+            Card("c8", 8, R.drawable.clubs_8),
+            Card("c9", 9, R.drawable.clubs_9),
+            Card("c10", 10, R.drawable.clubs_10),
+            Card("c11", 11, R.drawable.clubs_jack),
+            Card("c12", 12, R.drawable.clubs_queen),
+            Card("c13", 13, R.drawable.clubs_king),
+            Card("d1", 1, R.drawable.diamonds_1),
+            Card("d2", 2, R.drawable.diamonds_2),
+            Card("d3", 3, R.drawable.diamonds_3),
+            Card("d4", 4, R.drawable.diamonds_4),
+            Card("d5", 5, R.drawable.diamonds_5),
+            Card("d6", 6, R.drawable.diamonds_6),
+            Card("d7", 7, R.drawable.diamonds_7),
+            Card("d8", 8, R.drawable.diamonds_8),
+            Card("d9", 9, R.drawable.diamonds_9),
+            Card("d10", 10, R.drawable.diamonds_10),
+            Card("d11", 11, R.drawable.diamonds_jack),
+            Card("d12", 12, R.drawable.diamonds_queen),
+            Card("d13", 13, R.drawable.diamonds_king)
         )
         deckOfCards.shuffle()
     }
