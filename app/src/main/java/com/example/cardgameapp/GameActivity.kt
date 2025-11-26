@@ -38,8 +38,6 @@ class GameActivity : AppCompatActivity() {
             currentCard = deckOfCards[cardCount]
             deckOfCards.removeFirst()
 
-
-
             openPile()
 //        }
 
@@ -47,22 +45,49 @@ class GameActivity : AppCompatActivity() {
 //      showCard(deckOfCards[cardCount])
 
         binding.buttonHigher.setOnClickListener {
+            val guess = "higher"
 
-            // check guess
-            val correctGuess = checkGuess()
-            if (correctGuess) {
-                currentCard = deckOfCards[0]
-                openPile()
-            }
-            deckOfCards.removeFirst()
+            checkCorrectGuess(guess)
+
         }
 
 
         binding.buttonLower.setOnClickListener {
+            val guess = "lower"
+
+            checkCorrectGuess(guess)
 
         }
     }
 
+    private fun checkCorrectGuess(guess: String) {
+        // check guess
+        val correctGuess = checkGuess(guess)
+        if (correctGuess) {
+            currentCard = deckOfCards[0]
+            openPile()
+        } else {
+            currentCard = deckOfCards[0]
+            closePile()
+            pileCount++
+            openPile()
+        }
+        deckOfCards.removeFirst()
+    }
+
+    private fun closePile() {
+        when (pileCount) {
+            1 -> binding.imageViewOne.setImageResource(R.drawable.backside_card)
+            2 -> binding.imageViewTwo.setImageResource(R.drawable.backside_card)
+            3 -> binding.imageViewThree.setImageResource(R.drawable.backside_card)
+            4 -> binding.imageViewFour.setImageResource(R.drawable.backside_card)
+            5 -> binding.imageViewFive.setImageResource(R.drawable.backside_card)
+            6 -> binding.imageViewSix.setImageResource(R.drawable.backside_card)
+            7 -> binding.imageViewSeven.setImageResource(R.drawable.backside_card)
+            8 -> binding.imageViewEight.setImageResource(R.drawable.backside_card)
+            9 -> binding.imageViewNine.setImageResource(R.drawable.backside_card)
+        }
+    }
     private fun openPile() {
         currentCardResId = showCard(currentCard.name)
 
@@ -79,26 +104,47 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkGuess() : Boolean {
+    private fun checkGuess(guess: String) : Boolean {
         var correctGuess = false
 
-        if (deckOfCards[0].value == 1) {
-            if (currentCard.value == 1) {
+        if (currentCard.value == 1) {
+
+            if (deckOfCards[0].value == 1) {
                 Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name} ")
                 correctGuess = false
             } else {
-                Log.e("!!!", "true, ${deckOfCards[0].name} is higher than ${currentCard.name}")
+                Log.e("!!!", "true, ${deckOfCards[0].name} is higher or lower than ${currentCard.name}")
                 correctGuess = true
             }
+
+        } else if (deckOfCards[0].value == 1) {
+
+            Log.e("!!!", "true, ${deckOfCards[0].name} is higher or lower than ${currentCard.name}")
+            correctGuess = true
+
         } else if (deckOfCards[0].value == currentCard.value) {
             Log.e("!!!", "false, ${deckOfCards[0].name} is the same value as ${currentCard.name}")
             correctGuess = false
+
         } else if (deckOfCards[0].value < currentCard.value) {
-            Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
-            correctGuess = false
+
+            if (guess == "higher") {
+                Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                correctGuess = false
+            } else if (guess == "lower") {
+                Log.e("!!!", "true, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                correctGuess = true
+            }
+
         } else if (deckOfCards[0].value > currentCard.value) {
-            Log.e("!!!", "true, ${deckOfCards[0].name} is higher than ${currentCard.name}")
-            correctGuess = true
+
+            if (guess == "higher") {
+                Log.e("!!!", "true, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                correctGuess = true
+            } else if (guess == "lower") {
+                Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                correctGuess = false
+            }
         }
         return correctGuess
     }
