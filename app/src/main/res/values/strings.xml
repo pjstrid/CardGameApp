@@ -12,4 +12,7 @@
     <string name="lower_button_text">Lower</string>
     <string name="cards_left_text">Cards left:</string>
     <string name="default_card_count">52</string>
+    <string name="tab_item_text_home">Home</string>
+    <string name="tab_item_text_highscore">Highscore</string>
+    <string name="player_header">Player:</string>
 </resources>
