@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-//        binding.buttonStartGame.visibility = View.INVISIBLE
+        binding.buttonStartGame.visibility = View.INVISIBLE
 
         currentPlayer = Player("")
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonStartGame.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
-
+            intent.putExtra("currentPlayer", currentPlayer.name)
             startActivity(intent)
         }
 

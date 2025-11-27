@@ -14,6 +14,8 @@ import kotlinx.coroutines.launch
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
 
+    private lateinit var currentPlayerName: String
+
     private lateinit var deckOfCards: MutableList<Card>
 
     private var cardCount = 0
@@ -33,13 +35,15 @@ class GameActivity : AppCompatActivity() {
     private lateinit var currentPileCard: Card
     private lateinit var theDrawCard: Card
 
-    private var gameRunning = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        currentPlayerName = intent.getStringExtra("currentPlayer").toString()
+        binding.textViewCornerPlayerName.text = currentPlayerName
 
 //      Creates a shuffled list of all the cards
         createShuffledDeck()
@@ -82,7 +86,6 @@ class GameActivity : AppCompatActivity() {
             }
 
             if (cardsLeft == 0) {
-                gameRunning = false
                 Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
             } else if (pileCount == 10) {
                 Toast.makeText(this, "You lost!", Toast.LENGTH_LONG).show()
@@ -100,11 +103,14 @@ class GameActivity : AppCompatActivity() {
             }
 
             if (cardsLeft == 0) {
-                gameRunning = false
                 Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
             } else if (pileCount == 10) {
                 Toast.makeText(this, "You lost!", Toast.LENGTH_LONG).show()
             }
+        }
+
+        binding.buttonHome.setOnClickListener {
+            finish()
         }
     }
 
@@ -152,17 +158,19 @@ class GameActivity : AppCompatActivity() {
             }
             openPile()
 
-            if(pileCount < 9) {
+
                 binding.buttonHigher.visibility = View.INVISIBLE
                 binding.buttonLower.visibility = View.INVISIBLE
-            }
+
 
             lifecycleScope.launch {
                 delay(1000)
                 closePile(pileCount)
 
-                binding.buttonHigher.visibility = View.VISIBLE
-                binding.buttonLower.visibility = View.VISIBLE
+                if(pileCount < 10) {
+                    binding.buttonHigher.visibility = View.VISIBLE
+                    binding.buttonLower.visibility = View.VISIBLE
+                }
             }
         }
 
