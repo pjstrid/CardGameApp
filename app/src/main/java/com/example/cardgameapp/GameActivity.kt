@@ -41,6 +41,14 @@ class GameActivity : AppCompatActivity() {
 //      Creates a shuffled deck of cards
         createShuffledDeck()
 
+//  To check the full deck
+//        var i = 0
+//        while (i < 52) {
+//        Log.i("...", deckOfCards[i].name)
+//            i++
+//    }
+//
+
 //      Deals a card to each nine piles
         dealTheFirstNine()
 
@@ -87,8 +95,14 @@ class GameActivity : AppCompatActivity() {
 
         //  Won or lost game
         if (cardsLeft == 0) {
+            //  Hiding the HIGHER & LOWER buttons
+            binding.buttonHigher.visibility = View.INVISIBLE
+            binding.buttonLower.visibility = View.INVISIBLE
             showWinningText()
         } else if (pileCount == 10) {
+            //  Hiding the HIGHER & LOWER buttons
+            binding.buttonHigher.visibility = View.INVISIBLE
+            binding.buttonLower.visibility = View.INVISIBLE
             showLoosingText()
         }
     }
@@ -109,9 +123,9 @@ class GameActivity : AppCompatActivity() {
     private fun showWinningText() {
         binding.resultCardView.visibility = View.VISIBLE
 
-        binding.resultView.setBackgroundColor(resources.getColor(R.color.green, theme))
+        binding.resultView.setBackgroundColor(resources.getColor(R.color.blue, theme))
         binding.resultView.text = getString(R.string.winning_text)
-        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", 550f)
+        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", -550f)
         animatorY.duration = 500
         animatorY.start()
     }
@@ -145,6 +159,18 @@ class GameActivity : AppCompatActivity() {
 
         //  Show the card from the draw pile on the lost pile
             currentPile.setImageResource(theDrawCard.resId)
+            when (pileCount) {
+                1 -> binding.textViewOneX.visibility = View.VISIBLE
+                2 -> binding.textViewTwoX.visibility = View.VISIBLE
+                3 -> binding.textViewThreeX.visibility = View.VISIBLE
+                4 -> binding.textViewFourX.visibility = View.VISIBLE
+                5 -> binding.textViewFiveX.visibility = View.VISIBLE
+                6 -> binding.textViewSixX.visibility = View.VISIBLE
+                7 -> binding.textViewSevenX.visibility = View.VISIBLE
+                8 -> binding.textViewEightX.visibility = View.VISIBLE
+                9 -> binding.textViewNineX.visibility = View.VISIBLE
+            }
+            binding.textViewOneX.visibility = View.VISIBLE
 
         //  Sets current card to the next card in the list (and the next pile)
             pileCount++

@@ -82,6 +82,18 @@
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/hearts_1" />
 
+                <TextView
+                    android:id="@+id/text_view_one_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -101,6 +113,18 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
+
+                <TextView
+                    android:id="@+id/text_view_two_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -120,6 +144,18 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
+
+                <TextView
+                    android:id="@+id/text_view_three_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -141,6 +177,18 @@
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
 
+                <TextView
+                    android:id="@+id/text_view_four_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -160,6 +208,18 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
+
+                <TextView
+                    android:id="@+id/text_view_five_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -181,6 +241,18 @@
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
 
+                <TextView
+                    android:id="@+id/text_view_six_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -200,6 +272,18 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
+
+                <TextView
+                    android:id="@+id/text_view_seven_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -221,6 +305,18 @@
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
 
+                <TextView
+                    android:id="@+id/text_view_eight_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -240,6 +336,18 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/default_description"
                     tools:src="@drawable/backside_card" />
+
+                <TextView
+                    android:id="@+id/text_view_nine_x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:visibility="invisible"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:textSize="92sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
