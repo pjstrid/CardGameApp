@@ -1,10 +1,10 @@
 package com.example.cardgameapp
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.cardgameapp.databinding.ActivityGameBinding
@@ -38,7 +38,7 @@ class GameActivity : AppCompatActivity() {
         currentPlayerName = intent.getStringExtra("currentPlayer").toString()
         binding.textViewCornerPlayerName.text = currentPlayerName
 
-//      Creates a shuffled list of all the cards
+//      Creates a shuffled deck of cards
         createShuffledDeck()
 
 //      Deals a card to each nine piles
@@ -48,66 +48,75 @@ class GameActivity : AppCompatActivity() {
         createStartLayout()
         binding.textViewCardCount.text = cardsLeft.toString()
 
-//      Game starts
+    //  Determines pile one as the starting pile
         currentPile = determinePile(pileCount)
+
+    //  Picks the first card from the list to be in the card in the starting pile
         currentPileCard = firstNineCardsList[0]
         theDrawCard = deckOfCards[cardCount]
 
-        Log.i("!!!", firstNineCardsList[0].name)
-        Log.i("!!!", firstNineCardsList[1].name)
-        Log.i("!!!", firstNineCardsList[2].name)
-        Log.i("!!!", firstNineCardsList[3].name)
-        Log.i("!!!", firstNineCardsList[4].name)
-        Log.i("!!!", firstNineCardsList[5].name)
-        Log.i("!!!", firstNineCardsList[6].name)
-        Log.i("!!!", firstNineCardsList[7].name)
-        Log.i("!!!", firstNineCardsList[8].name)
+//      "Opens" the card on the current pile
+        showCardOnPile()
 
-        val numOfCardsInDeck = deckOfCards.size - cardCount
-        Log.i("!!!", numOfCardsInDeck.toString())
-
-        openPile()
-
+//      Game logic when pressing the "Higher-Button"
         binding.buttonHigher.setOnClickListener {
-
             val guess = "higher"
-            checkCorrectGuess(guess)
-            updateDrawPile()
-
-            if (cardCount < 52) {
-                theDrawCard = deckOfCards[cardCount]
-            }
-
-            if (cardsLeft == 0) {
-                Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
-            } else if (pileCount == 10) {
-                Toast.makeText(this, "You lost!", Toast.LENGTH_LONG).show()
-            }
+            gameplayLogic(guess)
         }
 
+//      Game logic when pressing the "Lower-Button"
         binding.buttonLower.setOnClickListener {
-
             val guess = "lower"
-            checkCorrectGuess(guess)
-            updateDrawPile()
-
-            if (cardCount < 52) {
-                theDrawCard = deckOfCards[cardCount]
-            }
-
-            if (cardsLeft == 0) {
-                Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
-            } else if (pileCount == 10) {
-                Toast.makeText(this, "You lost!", Toast.LENGTH_LONG).show()
-            }
+            gameplayLogic(guess)
         }
 
+//      Return to MainActivity / "Home" when pressing the "Home-Button"
         binding.buttonHome.setOnClickListener {
             finish()
         }
     }
 
+//  Gameplay logic to check guess and determine won or lost game
+    private fun gameplayLogic(guess: String) {
+        checkGuess(guess)
+        updateDrawPile()
 
+        if (cardCount < 52) {
+            theDrawCard = deckOfCards[cardCount]
+        }
+
+        //  Won or lost game
+        if (cardsLeft == 0) {
+            showWinningText()
+        } else if (pileCount == 10) {
+            showLoosingText()
+        }
+    }
+
+//  Function for showing the "YOU LOSE"-text when game is lost
+    private fun showLoosingText() {
+        binding.resultCardView.visibility = View.VISIBLE
+
+        binding.resultView.setBackgroundColor(resources.getColor(R.color.red, theme))
+        binding.resultView.text = getString(R.string.losing_text)
+
+        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", -550f)
+        animatorY.duration = 500
+        animatorY.start()
+    }
+
+//  Function for showing the "YOU WON"-text when game is lost
+    private fun showWinningText() {
+        binding.resultCardView.visibility = View.VISIBLE
+
+        binding.resultView.setBackgroundColor(resources.getColor(R.color.green, theme))
+        binding.resultView.text = getString(R.string.winning_text)
+        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", 550f)
+        animatorY.duration = 500
+        animatorY.start()
+    }
+
+//  Function for dealing the first nine card of the deck to the piles
     fun dealTheFirstNine() {
         var dealingPilesCount = 1
 
@@ -119,16 +128,25 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkCorrectGuess(guess: String) {
+//  Function for checking if a guess: Higher or Lower guess, is correct or not
+    private fun checkGuess(guess: String) {
 
-        val correctGuess = checkGuess(guess)
+        val correctGuess = compareCards(guess)
+
         if (correctGuess) {
+        //  Moving the card from the draw pile to the current pile to be played against next
             currentPileCard = theDrawCard
-            openPile()
+
+        //  "Open" the card on the current pile
+            showCardOnPile()
         } else {
+        //  Changing pile to the next one
             currentPile = determinePile(pileCount)
+
+        //  Show the card from the draw pile on the lost pile
             currentPile.setImageResource(theDrawCard.resId)
 
+        //  Sets current card to the next card in the list (and the next pile)
             pileCount++
             when (pileCount) {
                 1 -> currentPileCard = firstNineCardsList[0]
@@ -141,11 +159,15 @@ class GameActivity : AppCompatActivity() {
                 8 -> currentPileCard = firstNineCardsList[7]
                 9 -> currentPileCard = firstNineCardsList[8]
             }
-            openPile()
-            // Hiding the Higher & Lower buttons
-                binding.buttonHigher.visibility = View.INVISIBLE
-                binding.buttonLower.visibility = View.INVISIBLE
+        //  "Open" the card on the current pile
 
+            showCardOnPile()
+
+        //  Hiding the HIGHER & LOWER buttons
+            binding.buttonHigher.visibility = View.INVISIBLE
+            binding.buttonLower.visibility = View.INVISIBLE
+
+        //  Shows the HIGHER & LOWER buttons again after a delay
             lifecycleScope.launch {
                 delay(1000)
                 closePile(pileCount)
@@ -156,10 +178,11 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         }
-
+    //  Plus one on card count to know how many cards played
         cardCount++
     }
 
+//  Function for "closing" a pile if incorrect guess (set image to backside of card)
     private fun closePile(currentPileCount : Int) {
         val previousPile = currentPileCount - 1
 
@@ -175,7 +198,9 @@ class GameActivity : AppCompatActivity() {
             9 -> binding.imageViewNine.setImageResource(R.drawable.backside_card)
         }
     }
-    private fun openPile() {
+
+//  Function for "opening" a pile by showing the current cards image on that pile
+    private fun showCardOnPile() {
 
         when (pileCount) {
             1 -> binding.imageViewOne.setImageResource(currentPileCard.resId)
@@ -190,7 +215,8 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkGuess(guess: String) : Boolean {
+//  Function for comparing the card shown on the current pile against the card on top of the deck
+    private fun compareCards(guess: String) : Boolean {
         var correctGuess = false
 
         if (currentPileCard.value == 1) {
@@ -222,7 +248,7 @@ class GameActivity : AppCompatActivity() {
                 correctGuess = true
             }
 
-        } else {//  if (theDrawCard.value > currentPileCard.value)
+        } else { //  if (theDrawCard.value > currentPileCard.value)
 
             if (guess == "higher") {
                 Log.i("!!!", "true, ${theDrawCard.name} is higher than ${currentPileCard.name}")
@@ -235,6 +261,7 @@ class GameActivity : AppCompatActivity() {
         return correctGuess
     }
 
+//  Function for updating the draw pile visibly and the counter
     private fun updateDrawPile() {
 
         if (cardsLeft > 0) {
@@ -255,6 +282,7 @@ class GameActivity : AppCompatActivity() {
         binding.textViewCardCount.text = cardsLeft.toString()
     }
 
+//  Function for determine which pile is the current playing pile
     private fun determinePile(pile : Int) : ImageView {
         lateinit var currentPile : ImageView
 
@@ -273,6 +301,7 @@ class GameActivity : AppCompatActivity() {
         return currentPile
     }
 
+//  Function for setting the backside of the card as a start on each pile
     private fun createStartLayout() {
         binding.imageViewOne.setImageResource(R.drawable.backside_card)
         binding.imageViewTwo.setImageResource(R.drawable.backside_card)
@@ -284,11 +313,11 @@ class GameActivity : AppCompatActivity() {
         binding.imageViewEight.setImageResource(R.drawable.backside_card)
         binding.imageViewNine.setImageResource(R.drawable.backside_card)
 
-
         binding.imageDrawPileTopCard.setImageResource(R.drawable.backside_card)
         binding.imageBottomOfDrawPile.setImageResource(R.drawable.backside_card)
     }
 
+//  Function for creating the deck as a list and shuffle it straight away
     private fun createShuffledDeck() {
         deckOfCards = mutableListOf(
             Card("Ace of Hearts", 1,R.drawable.hearts_1),
@@ -346,5 +375,4 @@ class GameActivity : AppCompatActivity() {
         )
         deckOfCards.shuffle()
     }
-
 }

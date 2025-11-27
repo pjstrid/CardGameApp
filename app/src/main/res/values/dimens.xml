@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="no_elevation">0dp</dimen>
+
+    <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="card_width">84dp</dimen>
     <dimen name="card_height">122dp</dimen>
-    <dimen name="card_margin">24dp</dimen>
-    <dimen name="card_corner_radius">8dp</dimen>
-    <dimen name="elevation_effect_margin_width">8dp</dimen>
-    <dimen name="elevation_effect_margin_height">6dp</dimen>
-    <dimen name="no_elevation">0dp</dimen>
-    <dimen name="draw_pile_height">128dp</dimen>
-    <dimen name="draw_pile_width">92dp</dimen>
+
+    <dimen name="radius_16dp">16dp</dimen>
+
     <dimen name="margin_4dp">4dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
     <dimen name="margin_18dp">18dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_64dp">64dp</dimen>
+
+    <dimen name="draw_pile_width">92dp</dimen>
+    <dimen name="draw_pile_height">128dp</dimen>
+
+    <dimen name="elevation_effect_margin_height">6dp</dimen>
+    <dimen name="elevation_effect_margin_width">8dp</dimen>
+
+<!--    TEXT SIZES   -->
+    <dimen name="medium_text_size">16sp</dimen>
     <dimen name="large_text_size">24sp</dimen>
-    <dimen name="dimen_24dp">24dp</dimen>
 </resources>

@@ -15,5 +15,9 @@
     <string name="default_card_count">52</string>
     <string name="tab_item_text_home">HOME</string>
     <string name="tab_item_text_highscore">HIGHSCORE</string>
+    <string name="edit_text_error_msg">Enter at least to characters</string>
+
+    <string name="losing_text">YOU LOST</string>
+    <string name="winning_text">YOU WON!</string>
 
 </resources>

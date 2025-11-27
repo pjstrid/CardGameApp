@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             val input = binding.editTextCreatePlayer.editText?.text.toString()
             
             if (input.length < 2) {
-                binding.editTextCreatePlayer.error = "Enter at least to characters"
+                binding.editTextCreatePlayer.error = getString(R.string.edit_text_error_msg)
             } else {
                 binding.editTextCreatePlayer.error = null
 
