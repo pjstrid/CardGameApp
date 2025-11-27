@@ -21,10 +21,18 @@ class MainActivity : AppCompatActivity() {
         currentPlayer = Player("")
 
         binding.buttonCreatePlayer.setOnClickListener {
-            currentPlayer.name = binding.editTextCreatePlayer.editText?.text.toString().uppercase()
+            val input = binding.editTextCreatePlayer.editText?.text.toString()
+            
+            if (input.length < 2) {
+                binding.editTextCreatePlayer.error = "Enter at least to characters"
+            } else {
+                binding.editTextCreatePlayer.error = null
 
-            binding.playerNameView.text = currentPlayer.name
-            binding.buttonStartGame.visibility = View.VISIBLE
+                currentPlayer.name = input.uppercase()
+
+                binding.playerNameView.text = currentPlayer.name
+                binding.buttonStartGame.visibility = View.VISIBLE
+            }
         }
 
         binding.buttonStartGame.setOnClickListener {

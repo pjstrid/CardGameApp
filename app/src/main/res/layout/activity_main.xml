@@ -42,6 +42,8 @@
         android:hint="@string/hint_name_text"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
+
+        app:errorTextColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enter_name_view">
@@ -50,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:maxLength="10" />
+            android:maxLength="10"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

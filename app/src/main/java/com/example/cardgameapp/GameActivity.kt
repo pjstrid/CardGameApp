@@ -21,15 +21,7 @@ class GameActivity : AppCompatActivity() {
     private var cardCount = 0
     private var cardsLeft = 43
 
-    private var pileOneList = mutableListOf<Card>()
-    private var pileTwoList = mutableListOf<Card>()
-    private var pileThreeList = mutableListOf<Card>()
-    private var pileFourList = mutableListOf<Card>()
-    private var pileFiveList = mutableListOf<Card>()
-    private var pileSixList = mutableListOf<Card>()
-    private var pileSevenList = mutableListOf<Card>()
-    private var pileEightList = mutableListOf<Card>()
-    private var pileNineList = mutableListOf<Card>()
+    private var firstNineCardsList = mutableListOf<Card>()
     private lateinit var currentPile : ImageView
     private var pileCount = 1
     private lateinit var currentPileCard: Card
@@ -42,6 +34,7 @@ class GameActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+//      Get player name from MainActivity and add to the Layout
         currentPlayerName = intent.getStringExtra("currentPlayer").toString()
         binding.textViewCornerPlayerName.text = currentPlayerName
 
@@ -57,18 +50,18 @@ class GameActivity : AppCompatActivity() {
 
 //      Game starts
         currentPile = determinePile(pileCount)
-        currentPileCard = pileOneList[0]
+        currentPileCard = firstNineCardsList[0]
         theDrawCard = deckOfCards[cardCount]
 
-        Log.i("!!!", pileOneList[0].name)
-        Log.i("!!!", pileTwoList[0].name)
-        Log.i("!!!", pileThreeList[0].name)
-        Log.i("!!!", pileFourList[0].name)
-        Log.i("!!!", pileFiveList[0].name)
-        Log.i("!!!", pileSixList[0].name)
-        Log.i("!!!", pileSevenList[0].name)
-        Log.i("!!!", pileEightList[0].name)
-        Log.i("!!!", pileNineList[0].name)
+        Log.i("!!!", firstNineCardsList[0].name)
+        Log.i("!!!", firstNineCardsList[1].name)
+        Log.i("!!!", firstNineCardsList[2].name)
+        Log.i("!!!", firstNineCardsList[3].name)
+        Log.i("!!!", firstNineCardsList[4].name)
+        Log.i("!!!", firstNineCardsList[5].name)
+        Log.i("!!!", firstNineCardsList[6].name)
+        Log.i("!!!", firstNineCardsList[7].name)
+        Log.i("!!!", firstNineCardsList[8].name)
 
         val numOfCardsInDeck = deckOfCards.size - cardCount
         Log.i("!!!", numOfCardsInDeck.toString())
@@ -119,17 +112,8 @@ class GameActivity : AppCompatActivity() {
         var dealingPilesCount = 1
 
         while (dealingPilesCount < 10) {
-            when (dealingPilesCount) {
-                1 -> pileOneList.add(deckOfCards[cardCount])
-                2 -> pileTwoList.add(deckOfCards[cardCount])
-                3 -> pileThreeList.add(deckOfCards[cardCount])
-                4 -> pileFourList.add(deckOfCards[cardCount])
-                5 -> pileFiveList.add(deckOfCards[cardCount])
-                6 -> pileSixList.add(deckOfCards[cardCount])
-                7 -> pileSevenList.add(deckOfCards[cardCount])
-                8 -> pileEightList.add(deckOfCards[cardCount])
-                9 -> pileNineList.add(deckOfCards[cardCount])
-            }
+            firstNineCardsList.add(deckOfCards[cardCount])
+
             cardCount++
             dealingPilesCount++
         }
@@ -144,24 +128,23 @@ class GameActivity : AppCompatActivity() {
         } else {
             currentPile = determinePile(pileCount)
             currentPile.setImageResource(theDrawCard.resId)
+
             pileCount++
             when (pileCount) {
-                1 -> currentPileCard = pileOneList[0]
-                2 -> currentPileCard = pileTwoList[0]
-                3 -> currentPileCard = pileThreeList[0]
-                4 -> currentPileCard = pileFourList[0]
-                5 -> currentPileCard = pileFiveList[0]
-                6 -> currentPileCard = pileSixList[0]
-                7 -> currentPileCard = pileSevenList[0]
-                8 -> currentPileCard = pileEightList[0]
-                9 -> currentPileCard = pileNineList[0]
+                1 -> currentPileCard = firstNineCardsList[0]
+                2 -> currentPileCard = firstNineCardsList[1]
+                3 -> currentPileCard = firstNineCardsList[2]
+                4 -> currentPileCard = firstNineCardsList[3]
+                5 -> currentPileCard = firstNineCardsList[4]
+                6 -> currentPileCard = firstNineCardsList[5]
+                7 -> currentPileCard = firstNineCardsList[6]
+                8 -> currentPileCard = firstNineCardsList[7]
+                9 -> currentPileCard = firstNineCardsList[8]
             }
             openPile()
-
-
+            // Hiding the Higher & Lower buttons
                 binding.buttonHigher.visibility = View.INVISIBLE
                 binding.buttonLower.visibility = View.INVISIBLE
-
 
             lifecycleScope.launch {
                 delay(1000)
