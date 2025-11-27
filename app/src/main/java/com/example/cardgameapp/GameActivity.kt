@@ -6,7 +6,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.cardgameapp.databinding.ActivityGameBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
@@ -15,9 +18,21 @@ class GameActivity : AppCompatActivity() {
 
     private var cardCount = 0
     private var cardsLeft = 43
+
+    private var pileOneList = mutableListOf<Card>()
+    private var pileTwoList = mutableListOf<Card>()
+    private var pileThreeList = mutableListOf<Card>()
+    private var pileFourList = mutableListOf<Card>()
+    private var pileFiveList = mutableListOf<Card>()
+    private var pileSixList = mutableListOf<Card>()
+    private var pileSevenList = mutableListOf<Card>()
+    private var pileEightList = mutableListOf<Card>()
+    private var pileNineList = mutableListOf<Card>()
     private lateinit var currentPile : ImageView
     private var pileCount = 1
-    private lateinit var currentCard: Card
+    private lateinit var currentPileCard: Card
+    private lateinit var theDrawCard: Card
+
     private var gameRunning = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,22 +44,43 @@ class GameActivity : AppCompatActivity() {
 //      Creates a shuffled list of all the cards
         createShuffledDeck()
 
+//      Deals a card to each nine piles
+        dealTheFirstNine()
+
 //      Creates a layout with a card on each pile
         createStartLayout()
         binding.textViewCardCount.text = cardsLeft.toString()
 
 //      Game starts
-            currentPile = determinePile(pileCount)
-            currentCard = deckOfCards[cardCount]
-            deckOfCards.removeFirst()
+        currentPile = determinePile(pileCount)
+        currentPileCard = pileOneList[0]
+        theDrawCard = deckOfCards[cardCount]
 
-            openPile()
+        Log.i("!!!", pileOneList[0].name)
+        Log.i("!!!", pileTwoList[0].name)
+        Log.i("!!!", pileThreeList[0].name)
+        Log.i("!!!", pileFourList[0].name)
+        Log.i("!!!", pileFiveList[0].name)
+        Log.i("!!!", pileSixList[0].name)
+        Log.i("!!!", pileSevenList[0].name)
+        Log.i("!!!", pileEightList[0].name)
+        Log.i("!!!", pileNineList[0].name)
+
+        val numOfCardsInDeck = deckOfCards.size - cardCount
+        Log.i("!!!", numOfCardsInDeck.toString())
+
+        openPile()
 
         binding.buttonHigher.setOnClickListener {
 
             val guess = "higher"
             checkCorrectGuess(guess)
             updateDrawPile()
+
+            if (cardCount < 52) {
+                theDrawCard = deckOfCards[cardCount]
+            }
+
             if (cardsLeft == 0) {
                 gameRunning = false
                 Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
@@ -58,6 +94,11 @@ class GameActivity : AppCompatActivity() {
             val guess = "lower"
             checkCorrectGuess(guess)
             updateDrawPile()
+
+            if (cardCount < 52) {
+                theDrawCard = deckOfCards[cardCount]
+            }
+
             if (cardsLeft == 0) {
                 gameRunning = false
                 Toast.makeText(this, "You won!", Toast.LENGTH_LONG).show()
@@ -67,23 +108,71 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkCorrectGuess(guess: String) {
-        // check guess
-        val correctGuess = checkGuess(guess)
-        if (correctGuess) {
-            currentCard = deckOfCards[0]
-            openPile()
-        } else {
-            currentCard = deckOfCards[0]
-            closePile()
-            pileCount++
-            openPile()
+
+    fun dealTheFirstNine() {
+        var dealingPilesCount = 1
+
+        while (dealingPilesCount < 10) {
+            when (dealingPilesCount) {
+                1 -> pileOneList.add(deckOfCards[cardCount])
+                2 -> pileTwoList.add(deckOfCards[cardCount])
+                3 -> pileThreeList.add(deckOfCards[cardCount])
+                4 -> pileFourList.add(deckOfCards[cardCount])
+                5 -> pileFiveList.add(deckOfCards[cardCount])
+                6 -> pileSixList.add(deckOfCards[cardCount])
+                7 -> pileSevenList.add(deckOfCards[cardCount])
+                8 -> pileEightList.add(deckOfCards[cardCount])
+                9 -> pileNineList.add(deckOfCards[cardCount])
+            }
+            cardCount++
+            dealingPilesCount++
         }
-        deckOfCards.removeFirst()
     }
 
-    private fun closePile() {
-        when (pileCount) {
+    private fun checkCorrectGuess(guess: String) {
+
+        val correctGuess = checkGuess(guess)
+        if (correctGuess) {
+            currentPileCard = theDrawCard
+            openPile()
+        } else {
+            currentPile = determinePile(pileCount)
+            currentPile.setImageResource(theDrawCard.resId)
+            pileCount++
+            when (pileCount) {
+                1 -> currentPileCard = pileOneList[0]
+                2 -> currentPileCard = pileTwoList[0]
+                3 -> currentPileCard = pileThreeList[0]
+                4 -> currentPileCard = pileFourList[0]
+                5 -> currentPileCard = pileFiveList[0]
+                6 -> currentPileCard = pileSixList[0]
+                7 -> currentPileCard = pileSevenList[0]
+                8 -> currentPileCard = pileEightList[0]
+                9 -> currentPileCard = pileNineList[0]
+            }
+            openPile()
+
+            if(pileCount < 9) {
+                binding.buttonHigher.visibility = View.INVISIBLE
+                binding.buttonLower.visibility = View.INVISIBLE
+            }
+
+            lifecycleScope.launch {
+                delay(1000)
+                closePile(pileCount)
+
+                binding.buttonHigher.visibility = View.VISIBLE
+                binding.buttonLower.visibility = View.VISIBLE
+            }
+        }
+
+        cardCount++
+    }
+
+    private fun closePile(currentPileCount : Int) {
+        val previousPile = currentPileCount - 1
+
+        when (previousPile) {
             1 -> binding.imageViewOne.setImageResource(R.drawable.backside_card)
             2 -> binding.imageViewTwo.setImageResource(R.drawable.backside_card)
             3 -> binding.imageViewThree.setImageResource(R.drawable.backside_card)
@@ -98,57 +187,57 @@ class GameActivity : AppCompatActivity() {
     private fun openPile() {
 
         when (pileCount) {
-            1 -> binding.imageViewOne.setImageResource(currentCard.resId)
-            2 -> binding.imageViewTwo.setImageResource(currentCard.resId)
-            3 -> binding.imageViewThree.setImageResource(currentCard.resId)
-            4 -> binding.imageViewFour.setImageResource(currentCard.resId)
-            5 -> binding.imageViewFive.setImageResource(currentCard.resId)
-            6 -> binding.imageViewSix.setImageResource(currentCard.resId)
-            7 -> binding.imageViewSeven.setImageResource(currentCard.resId)
-            8 -> binding.imageViewEight.setImageResource(currentCard.resId)
-            9 -> binding.imageViewNine.setImageResource(currentCard.resId)
+            1 -> binding.imageViewOne.setImageResource(currentPileCard.resId)
+            2 -> binding.imageViewTwo.setImageResource(currentPileCard.resId)
+            3 -> binding.imageViewThree.setImageResource(currentPileCard.resId)
+            4 -> binding.imageViewFour.setImageResource(currentPileCard.resId)
+            5 -> binding.imageViewFive.setImageResource(currentPileCard.resId)
+            6 -> binding.imageViewSix.setImageResource(currentPileCard.resId)
+            7 -> binding.imageViewSeven.setImageResource(currentPileCard.resId)
+            8 -> binding.imageViewEight.setImageResource(currentPileCard.resId)
+            9 -> binding.imageViewNine.setImageResource(currentPileCard.resId)
         }
     }
 
     private fun checkGuess(guess: String) : Boolean {
         var correctGuess = false
 
-        if (currentCard.value == 1) {
+        if (currentPileCard.value == 1) {
 
-            if (deckOfCards[0].value == 1) {
-                Log.e("!!!", "false, ${deckOfCards[0].name} is the same value as ${currentCard.name} ")
+            if (theDrawCard.value == 1) {
+                Log.e("!!!", "false, ${theDrawCard.name} is the same value as ${currentPileCard.name} ")
                 correctGuess = false
             } else {
-                Log.i("!!!", "true, ${deckOfCards[0].name} is higher or lower than ${currentCard.name}")
+                Log.i("!!!", "true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
                 correctGuess = true
             }
 
-        } else if (deckOfCards[0].value == 1) {
+        } else if (theDrawCard.value == 1) {
 
-            Log.i("!!!", "true, ${deckOfCards[0].name} is higher or lower than ${currentCard.name}")
+            Log.i("!!!", "true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
             correctGuess = true
 
-        } else if (deckOfCards[0].value == currentCard.value) {
-            Log.e("!!!", "false, ${deckOfCards[0].name} is the same value as ${currentCard.name}")
+        } else if (theDrawCard.value == currentPileCard.value) {
+            Log.e("!!!", "false, ${theDrawCard.name} is the same value as ${currentPileCard.name}")
             correctGuess = false
 
-        } else if (deckOfCards[0].value < currentCard.value) {
+        } else if (theDrawCard.value < currentPileCard.value) {
 
             if (guess == "higher") {
-                Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                Log.e("!!!", "false, ${theDrawCard.name} is lower than ${currentPileCard.name}")
                 correctGuess = false
             } else if (guess == "lower") {
-                Log.i("!!!", "true, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                Log.i("!!!", "true, ${theDrawCard.name} is lower than ${currentPileCard.name}")
                 correctGuess = true
             }
 
-        } else if (deckOfCards[0].value > currentCard.value) {
+        } else {//  if (theDrawCard.value > currentPileCard.value)
 
             if (guess == "higher") {
-                Log.i("!!!", "true, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                Log.i("!!!", "true, ${theDrawCard.name} is higher than ${currentPileCard.name}")
                 correctGuess = true
             } else if (guess == "lower") {
-                Log.e("!!!", "false, ${deckOfCards[0].name} is lower than ${currentCard.name}")
+                Log.e("!!!", "false, ${theDrawCard.name} is higher than ${currentPileCard.name}")
                 correctGuess = false
             }
         }
@@ -180,14 +269,14 @@ class GameActivity : AppCompatActivity() {
 
         when (pile) {
             1 -> currentPile = binding.imageViewOne
-            2 -> currentPile = binding.imageViewOne
-            3 -> currentPile = binding.imageViewOne
-            4 -> currentPile = binding.imageViewOne
-            5 -> currentPile = binding.imageViewOne
-            6 -> currentPile = binding.imageViewOne
-            7 -> currentPile = binding.imageViewOne
-            8 -> currentPile = binding.imageViewOne
-            9 -> currentPile = binding.imageViewOne
+            2 -> currentPile = binding.imageViewTwo
+            3 -> currentPile = binding.imageViewThree
+            4 -> currentPile = binding.imageViewFour
+            5 -> currentPile = binding.imageViewFive
+            6 -> currentPile = binding.imageViewSix
+            7 -> currentPile = binding.imageViewSeven
+            8 -> currentPile = binding.imageViewEight
+            9 -> currentPile = binding.imageViewNine
         }
 
         return currentPile
@@ -252,14 +341,14 @@ class GameActivity : AppCompatActivity() {
             Card("King of Clubs", 13, R.drawable.clubs_king),
             Card("Ace of Diamonds", 1, R.drawable.diamonds_1),
             Card("2 of Diamonds", 2, R.drawable.diamonds_2),
-            Card("2 of Diamonds", 3, R.drawable.diamonds_3),
-            Card("2 of Diamonds", 4, R.drawable.diamonds_4),
-            Card("2 of Diamonds", 5, R.drawable.diamonds_5),
-            Card("2 of Diamonds", 6, R.drawable.diamonds_6),
-            Card("2 of Diamonds", 7, R.drawable.diamonds_7),
-            Card("2 of Diamonds", 8, R.drawable.diamonds_8),
-            Card("2 of Diamonds", 9, R.drawable.diamonds_9),
-            Card("2 of Diamonds", 10, R.drawable.diamonds_10),
+            Card("3 of Diamonds", 3, R.drawable.diamonds_3),
+            Card("4 of Diamonds", 4, R.drawable.diamonds_4),
+            Card("5 of Diamonds", 5, R.drawable.diamonds_5),
+            Card("6 of Diamonds", 6, R.drawable.diamonds_6),
+            Card("7 of Diamonds", 7, R.drawable.diamonds_7),
+            Card("8 of Diamonds", 8, R.drawable.diamonds_8),
+            Card("9 of Diamonds", 9, R.drawable.diamonds_9),
+            Card("10 of Diamonds", 10, R.drawable.diamonds_10),
             Card("Jack of Diamonds", 11, R.drawable.diamonds_jack),
             Card("Queen of Diamonds", 12, R.drawable.diamonds_queen),
             Card("King of Diamonds", 13, R.drawable.diamonds_king)

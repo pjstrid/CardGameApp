@@ -129,13 +129,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/tab_item_text_home"
-            tools:text="@string/tab_item_text_home" />
+            android:text="@string/tab_item_text_home" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/tab_item_text_highscore"
-            tools:text="@string/tab_item_text_highscore" />
+            android:text="@string/tab_item_text_highscore" />
 
     </com.google.android.material.tabs.TabLayout>
 

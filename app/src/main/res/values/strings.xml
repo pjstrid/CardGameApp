@@ -1,18 +1,19 @@
 <resources>
     <string name="app_name">CardGameApp</string>
-    <string name="hint_name_text">Your name</string>
-    <string name="create_player_btn_text">Create player</string>
     <string name="game_name_text">CLEAR THE DECK</string>
-    <string name="enter_name_text">Enter your name:</string>
-    <string name="default_player_name_text">Player one</string>
-    <string name="start_game_btn_text">Start game</string>
+    <string name="enter_name_text">ENTER YOUR NAME:</string>
+    <string name="hint_name_text">NAME</string>
+    <string name="create_player_btn_text">CREATE PLAYER</string>
+    <string name="player_header">PLAYER:</string>
+    <string name="default_player_name_text">PLAYER ONE</string>
+    <string name="start_game_btn_text">START GAME</string>
     <string name="default_description">playing_card</string>
-    <string name="home_button_text">Home</string>
-    <string name="higher_button_text">Higher</string>
-    <string name="lower_button_text">Lower</string>
-    <string name="cards_left_text">Cards left:</string>
+    <string name="home_button_text">HOME</string>
+    <string name="higher_button_text">HIGHER</string>
+    <string name="lower_button_text">LOWER</string>
+    <string name="cards_left_text">CARDS LEFT:</string>
     <string name="default_card_count">52</string>
-    <string name="tab_item_text_home">Home</string>
-    <string name="tab_item_text_highscore">Highscore</string>
-    <string name="player_header">Player:</string>
+    <string name="tab_item_text_home">HOME</string>
+    <string name="tab_item_text_highscore">HIGHSCORE</string>
+
 </resources>
