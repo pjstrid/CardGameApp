@@ -2,7 +2,7 @@
 <resources>
     <dimen name="no_elevation">0dp</dimen>
 
-    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="radius_8dp">8dp</dimen>
     <dimen name="card_width">84dp</dimen>
     <dimen name="card_height">122dp</dimen>
 

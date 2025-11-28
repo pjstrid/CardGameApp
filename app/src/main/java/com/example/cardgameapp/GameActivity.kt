@@ -1,6 +1,7 @@
 package com.example.cardgameapp
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -66,19 +67,30 @@ class GameActivity : AppCompatActivity() {
 //      "Opens" the card on the current pile
         showCardOnPile()
 
-//      Game logic when pressing the "Higher-Button"
+//      Game logic when pressing the "HIGHER-Button"
         binding.buttonHigher.setOnClickListener {
             val guess = "higher"
             gameplayLogic(guess)
         }
 
-//      Game logic when pressing the "Lower-Button"
+//      Game logic when pressing the "LOWER-Button"
         binding.buttonLower.setOnClickListener {
             val guess = "lower"
             gameplayLogic(guess)
         }
 
-//      Return to MainActivity / "Home" when pressing the "Home-Button"
+//      Restart the game with the same player when pressing the "RESTART GAME-Button"
+        binding.buttonRestart.setOnClickListener {
+            val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra("currentPlayer", currentPlayerName)
+            startActivity(intent)
+
+            currentPlayerName = intent.getStringExtra("currentPlayer").toString()
+            binding.textViewCornerPlayerName.text = currentPlayerName
+            finish()
+        }
+
+//      Return to MainActivity / "HOME" when pressing the "HOME-Button"
         binding.buttonHome.setOnClickListener {
             finish()
         }
@@ -113,10 +125,6 @@ class GameActivity : AppCompatActivity() {
 
         binding.resultView.setBackgroundColor(resources.getColor(R.color.red, theme))
         binding.resultView.text = getString(R.string.losing_text)
-
-        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", -550f)
-        animatorY.duration = 500
-        animatorY.start()
     }
 
 //  Function for showing the "YOU WON"-text when game is lost
@@ -125,9 +133,6 @@ class GameActivity : AppCompatActivity() {
 
         binding.resultView.setBackgroundColor(resources.getColor(R.color.blue, theme))
         binding.resultView.text = getString(R.string.winning_text)
-        val animatorY = ObjectAnimator.ofFloat(binding.resultCardView, "translationY", -550f)
-        animatorY.duration = 500
-        animatorY.start()
     }
 
 //  Function for dealing the first nine card of the deck to the piles

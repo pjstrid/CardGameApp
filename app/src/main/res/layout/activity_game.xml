@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_24dp"
-        android:backgroundTint="@color/red"
+        android:textColor="@color/blue"
+        android:backgroundTint="@color/black"
         android:text="@string/home_button_text"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,9 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_16dp"
         android:backgroundTint="@color/green"
-        app:layout_constraintBottom_toTopOf="@id/button_higher"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_home">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,7 +70,7 @@
                 android:layout_height="@dimen/card_height"
                 android:layout_margin="@dimen/margin_24dp"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toTopOf="@+id/card_view_four"
                 app:layout_constraintEnd_toStartOf="@+id/card_view_two"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,13 +87,13 @@
                     android:id="@+id/text_view_one_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -101,7 +102,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toTopOf="@+id/card_view_five"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,13 +119,13 @@
                     android:id="@+id/text_view_two_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -132,7 +133,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toTopOf="@+id/card_view_six"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_view_two"
@@ -149,13 +150,13 @@
                     android:id="@+id/text_view_three_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -164,7 +165,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/card_view_five"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,13 +182,13 @@
                     android:id="@+id/text_view_four_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -196,7 +197,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -213,13 +214,13 @@
                     android:id="@+id/text_view_five_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -228,7 +229,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_view_five"
@@ -245,13 +246,13 @@
                     android:id="@+id/text_view_six_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -260,7 +261,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/card_view_eight"
                 app:layout_constraintStart_toStartOf="parent"
@@ -277,13 +278,13 @@
                     android:id="@+id/text_view_seven_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -292,7 +293,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -309,13 +310,13 @@
                     android:id="@+id/text_view_eight_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
 
@@ -324,7 +325,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_view_eight"
@@ -341,13 +342,13 @@
                     android:id="@+id/text_view_nine_x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X"
-                    android:visibility="invisible"
+                    android:gravity="center"
                     android:paddingBottom="@dimen/margin_8dp"
-                    android:textSize="92sp"
+                    android:text="@string/x_icon"
                     android:textColor="@color/black"
+                    android:textSize="92sp"
                     android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -358,25 +359,25 @@
         android:id="@+id/button_higher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_48dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/black"
         android:text="@string/higher_button_text"
         android:textColor="@color/bright_green"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/draw_pile"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/draw_pile"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/button_lower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_48dp"
         android:backgroundTint="@color/black"
         android:text="@string/lower_button_text"
         android:textColor="@color/red"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/draw_pile"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/draw_pile"
+        app:layout_constraintEnd_toEndOf="@id/button_higher"
+        app:layout_constraintStart_toStartOf="@+id/button_higher" />
 
 
     <androidx.cardview.widget.CardView
@@ -405,7 +406,7 @@
                 android:layout_marginTop="@dimen/elevation_effect_margin_height"
                 android:layout_marginEnd="@dimen/elevation_effect_margin_width"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:cardElevation="@dimen/no_elevation"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="false"
@@ -427,7 +428,7 @@
                 android:layout_width="@dimen/card_width"
                 android:layout_height="@dimen/card_height"
                 android:backgroundTint="@color/green"
-                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardCornerRadius="@dimen/radius_8dp"
                 app:cardElevation="@dimen/no_elevation"
                 app:cardPreventCornerOverlap="false"
                 app:cardUseCompatPadding="false"
@@ -475,20 +476,37 @@
         android:id="@+id/resultCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
+        app:cardCornerRadius="@dimen/radius_8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardCornerRadius="@dimen/radius_16dp">
-    <TextView
-        android:id="@+id/resultView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:padding="8dp"
-        android:textSize="@dimen/large_text_size"
-        android:textStyle="bold"
-        tools:text="YOU LOST"/>
+        app:layout_constraintTop_toBottomOf="@+id/playing_field">
+
+        <TextView
+            android:id="@+id/resultView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/margin_4dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/large_text_size"
+            android:textStyle="bold"
+            tools:text="YOU LOST" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/restart_button_text"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/draw_pile"
+        app:layout_constraintCircleRadius="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/draw_pile"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/draw_pile"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
