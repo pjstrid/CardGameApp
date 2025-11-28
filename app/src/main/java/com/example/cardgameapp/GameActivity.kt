@@ -1,6 +1,5 @@
 package com.example.cardgameapp
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -43,12 +42,13 @@ class GameActivity : AppCompatActivity() {
         createShuffledDeck()
 
 //  To check the full deck
-//        var i = 0
-//        while (i < 52) {
-//        Log.i("...", deckOfCards[i].name)
-//            i++
-//    }
-//
+        Log.i("...", "==================")
+        var i = 1
+        while (i < 53) {
+        Log.i("...", "card $i : ${deckOfCards[i-1].name}")
+            i++
+    }
+
 
 //      Deals a card to each nine piles
         dealTheFirstNine()
@@ -253,39 +253,39 @@ class GameActivity : AppCompatActivity() {
         if (currentPileCard.value == 1) {
 
             if (theDrawCard.value == 1) {
-                Log.e("!!!", "false, ${theDrawCard.name} is the same value as ${currentPileCard.name} ")
+                Log.e("!!!", "guess: $guess is wrong, ${theDrawCard.name} is the same value as ${currentPileCard.name} ")
                 correctGuess = false
             } else {
-                Log.i("!!!", "true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
+                Log.i("!!!", "guess: $guess is true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
                 correctGuess = true
             }
 
         } else if (theDrawCard.value == 1) {
 
-            Log.i("!!!", "true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
+            Log.i("!!!", "guess: $guess is true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}")
             correctGuess = true
 
         } else if (theDrawCard.value == currentPileCard.value) {
-            Log.e("!!!", "false, ${theDrawCard.name} is the same value as ${currentPileCard.name}")
+            Log.e("!!!", "guess: $guess is wrong, ${theDrawCard.name} is the same value as ${currentPileCard.name}")
             correctGuess = false
 
         } else if (theDrawCard.value < currentPileCard.value) {
 
             if (guess == "higher") {
-                Log.e("!!!", "false, ${theDrawCard.name} is lower than ${currentPileCard.name}")
+                Log.e("!!!", "guess: $guess is wrong, ${theDrawCard.name} is lower than ${currentPileCard.name}")
                 correctGuess = false
             } else if (guess == "lower") {
-                Log.i("!!!", "true, ${theDrawCard.name} is lower than ${currentPileCard.name}")
+                Log.i("!!!", "guess: $guess is true, ${theDrawCard.name} is lower than ${currentPileCard.name}")
                 correctGuess = true
             }
 
         } else { //  if (theDrawCard.value > currentPileCard.value)
 
             if (guess == "higher") {
-                Log.i("!!!", "true, ${theDrawCard.name} is higher than ${currentPileCard.name}")
+                Log.i("!!!", "guess: $guess is true, ${theDrawCard.name} is higher than ${currentPileCard.name}")
                 correctGuess = true
             } else if (guess == "lower") {
-                Log.e("!!!", "false, ${theDrawCard.name} is higher than ${currentPileCard.name}")
+                Log.e("!!!", "guess: $guess is wrong, ${theDrawCard.name} is higher than ${currentPileCard.name}")
                 correctGuess = false
             }
         }
