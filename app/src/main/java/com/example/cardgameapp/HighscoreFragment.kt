@@ -25,11 +25,49 @@ class HighscoreFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
-
-
+        if (DataManager.top10List.isNotEmpty()) {
+            binding.namePosition1.text = DataManager.top10List[0]?.name
+            binding.timePosition1.text = DataManager.top10List[0]?.time
+        }
+        if (DataManager.top10List.size > 1 ) {
+            binding.namePosition2.text = DataManager.top10List[1]?.name
+            binding.timePosition2.text = DataManager.top10List[1]?.time
+        }
+        if (DataManager.top10List.size > 2 ) {
+            binding.namePosition3.text = DataManager.top10List[2]?.name
+            binding.timePosition3.text = DataManager.top10List[2]?.time
+        }
+        if (DataManager.top10List.size > 3 ) {
+            binding.namePosition4.text = DataManager.top10List[3]?.name
+            binding.timePosition4.text = DataManager.top10List[3]?.time
+        }
+        if (DataManager.top10List.size > 4 ) {
+            binding.namePosition5.text = DataManager.top10List[4]?.name
+            binding.timePosition5.text = DataManager.top10List[4]?.time
+        }
+        if (DataManager.top10List.size > 5 ) {
+            binding.namePosition6.text = DataManager.top10List[5]?.name
+            binding.timePosition6.text = DataManager.top10List[5]?.time
+        }
+        if (DataManager.top10List.size > 6 ) {
+            binding.namePosition7.text = DataManager.top10List[6]?.name
+            binding.timePosition7.text = DataManager.top10List[6]?.time
+        }
+        if (DataManager.top10List.size > 7 ) {
+            binding.namePosition8.text = DataManager.top10List[7]?.name
+            binding.timePosition8.text = DataManager.top10List[7]?.time
+        }
+        if (DataManager.top10List.size > 8 ) {
+            binding.namePosition9.text = DataManager.top10List[8]?.name
+            binding.timePosition9.text = DataManager.top10List[8]?.time
+        }
+        if (DataManager.top10List.size > 9 ) {
+            binding.namePosition10.text = DataManager.top10List[9]?.name
+            binding.timePosition10.text = DataManager.top10List[9]?.time
+        }
     }
 
     companion object {
@@ -43,11 +81,10 @@ class HighscoreFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             HighscoreFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }

@@ -1,18 +1,37 @@
 package com.example.cardgameapp
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.cardgameapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     lateinit var binding : FragmentHomeBinding
 
-    lateinit var currentPlayer : Player
 
+    private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result ->
+        if (result.resultCode == RESULT_OK) {
+
+            val updatedPlayer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                result.data?.getSerializableExtra("updatedPlayer", Player::class.java)
+            } else {
+                result.data?.getSerializableExtra("updatedPlayer") as Player
+            }
+
+            if (updatedPlayer != null) {
+                DataManager.currentPlayer = updatedPlayer
+            }
+            DataManager.setHighscore(DataManager.currentPlayer)
+
+        }
+    }
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
@@ -34,7 +53,6 @@ class HomeFragment : Fragment() {
 
         binding.buttonStartGame.visibility = View.INVISIBLE
 
-        currentPlayer = Player("")
 
         binding.buttonCreatePlayer.setOnClickListener {
             val input = binding.editTextCreatePlayer.editText?.text.toString()
@@ -44,17 +62,17 @@ class HomeFragment : Fragment() {
             } else {
                 binding.editTextCreatePlayer.error = null
 
-                currentPlayer.name = input.uppercase()
+                DataManager.currentPlayer = Player(input.uppercase(), "")
 
-                binding.playerNameView.text = currentPlayer.name
+                binding.playerNameView.text = DataManager.currentPlayer.name
                 binding.buttonStartGame.visibility = View.VISIBLE
             }
         }
 
         binding.buttonStartGame.setOnClickListener {
             val intent = Intent(activity, GameActivity::class.java)
-            intent.putExtra("currentPlayer", currentPlayer.name)
-            startActivity(intent)
+            intent.putExtra("currentPlayer", DataManager.currentPlayer)
+            editLauncher.launch(intent)
         }
     }
 

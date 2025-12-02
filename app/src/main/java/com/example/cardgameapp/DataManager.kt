@@ -1,9 +1,17 @@
 package com.example.cardgameapp
 
-object DeckManager {
+object DataManager {
 
     lateinit var deckOfCards: MutableList<Card>
 
+    lateinit var currentPlayer: Player
+
+    var top10List: MutableList<Player?> = mutableListOf()
+
+    //  Function for creating the deck as a list and shuffle it straight away
+    fun setHighscore(player: Player) {
+        top10List.add(player)
+    }
 
     //  Function for creating the deck as a list and shuffle it straight away
     fun createShuffledDeck() {

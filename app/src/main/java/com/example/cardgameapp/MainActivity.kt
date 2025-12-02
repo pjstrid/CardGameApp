@@ -10,9 +10,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
 
-//    private lateinit var viewPager: ViewPager2
-//    private lateinit var tabBar: TabLayout
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

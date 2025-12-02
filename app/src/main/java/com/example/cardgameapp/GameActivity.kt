@@ -1,6 +1,7 @@
 package com.example.cardgameapp
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
 
-    private lateinit var currentPlayerName: String
+    private lateinit var currentPlayer: Player
 
     private var cardCount = 0
     private var cardsLeft = 43
@@ -38,17 +39,21 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //      Get player name from MainActivity and add to the Layout
-        currentPlayerName = intent.getStringExtra("currentPlayer").toString()
-        binding.textViewCornerPlayerName.text = currentPlayerName
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            currentPlayer = intent.getSerializableExtra("currentPlayer", Player::class.java)!!
+        } else {
+            currentPlayer = intent.getSerializableExtra("currentPlayer") as Player
+        }
+        binding.textViewCornerPlayerName.text = currentPlayer.name
 
 //      Creates a shuffled deck of cards
-        DeckManager.createShuffledDeck()
+        DataManager.createShuffledDeck()
 
 //  To check the full deck
         Log.i("...", "==================")
         var i = 1
         while (i < 53) {
-            Log.i("...", "card $i : ${DeckManager.deckOfCards[i - 1].name}")
+            Log.i("...", "card $i : ${DataManager.deckOfCards[i - 1].name}")
             i++
         }
 
@@ -65,7 +70,7 @@ class GameActivity : AppCompatActivity() {
 
         //  Picks the first card from the list to be in the card in the starting pile
         currentPileCard = firstNineCardsList[0]
-        theDrawCard = DeckManager.deckOfCards[cardCount]
+        theDrawCard = DataManager.deckOfCards[cardCount]
 
 //      "Opens" the card on the current pile
         showCardOnPile()
@@ -87,19 +92,34 @@ class GameActivity : AppCompatActivity() {
 //      Restart the game with the same player when pressing the "RESTART GAME-Button"
         binding.buttonRestart.setOnClickListener {
             stopTimer()
-            val intent = Intent(this, GameActivity::class.java)
-            intent.putExtra("currentPlayer", currentPlayerName)
-            startActivity(intent)
 
-            currentPlayerName = intent.getStringExtra("currentPlayer").toString()
-            binding.textViewCornerPlayerName.text = currentPlayerName
+            currentPlayer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getSerializableExtra("currentPlayer", Player::class.java)!!
+            } else {
+                intent.getSerializableExtra("currentPlayer") as Player
+            }
+
+            val restartIntent = Intent(this, GameActivity::class.java).apply {
+                putExtra("currentPlayer", currentPlayer)
+            }
+            binding.textViewCornerPlayerName.text = currentPlayer.name
+
+            startActivity(restartIntent)
             finish()
         }
 
 //      Return to MainActivity / "HOME" when pressing the "HOME-Button"
         binding.buttonHome.setOnClickListener {
-            finish()
             stopTimer()
+
+            val resultIntent = Intent().apply {
+                putExtra("updatedPlayer", currentPlayer)
+            }
+
+            setResult(RESULT_OK, resultIntent)
+
+
+            finish()
         }
     }
 
@@ -154,7 +174,7 @@ class GameActivity : AppCompatActivity() {
         updateDrawPile()
 
         if (cardCount < 52) {
-            theDrawCard = DeckManager.deckOfCards[cardCount]
+            theDrawCard = DataManager.deckOfCards[cardCount]
         }
 
         //  Won or lost game
@@ -163,7 +183,13 @@ class GameActivity : AppCompatActivity() {
             //  Hiding the HIGHER & LOWER buttons
             binding.buttonHigher.visibility = View.INVISIBLE
             binding.buttonLower.visibility = View.INVISIBLE
+            binding.buttonRestart.visibility = View.INVISIBLE
+
             showWinningText()
+
+            currentPlayer.time = binding.textViewTimer.text.toString()
+            Log.d("...", currentPlayer.time)
+
         } else if (pileCount == 10) {
             stopTimer()
             //  Hiding the HIGHER & LOWER buttons
@@ -194,7 +220,7 @@ class GameActivity : AppCompatActivity() {
         var dealingPilesCount = 1
 
         while (dealingPilesCount < 10) {
-            firstNineCardsList.add(DeckManager.deckOfCards[cardCount])
+            firstNineCardsList.add(DataManager.deckOfCards[cardCount])
 
             cardCount++
             dealingPilesCount++
