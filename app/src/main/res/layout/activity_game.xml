@@ -9,18 +9,17 @@
     tools:context=".GameActivity">
 
 
-
     <TextView
         android:id="@+id/text_view_corner_timer_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginTop="@dimen/margin_24dp"
         android:text="@string/timer_text"
         android:textColor="@color/gray"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -28,25 +27,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
+        android:text="@string/timer_starting_text"
         android:textColor="@color/gray"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/text_view_corner_timer_header"
         app:layout_constraintStart_toStartOf="@+id/text_view_corner_timer_header"
-        app:layout_constraintTop_toBottomOf="@id/text_view_corner_timer_header"
-        android:text="@string/timer_starting_text" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_corner_timer_header" />
 
     <TextView
         android:id="@+id/text_view_corner_player_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:layout_marginStart="48dp"
         android:text="@string/player_header"
         android:textColor="@color/gray"
-        android:layout_marginTop="@dimen/margin_24dp"
-        android:layout_marginEnd="48dp"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -494,9 +493,9 @@
         android:id="@+id/resultCardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:visibility="invisible"
         app:cardCornerRadius="@dimen/radius_8dp"
-        android:layout_marginTop="@dimen/margin_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playing_field">
@@ -523,7 +522,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/draw_pile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/draw_pile"/>
+        app:layout_constraintTop_toTopOf="@+id/draw_pile" />
 
     <Button
         android:id="@+id/button_home"
