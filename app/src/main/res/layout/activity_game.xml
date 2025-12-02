@@ -8,17 +8,33 @@
     android:background="@color/green"
     tools:context=".GameActivity">
 
-    <Button
-        android:id="@+id/button_home"
+
+
+    <TextView
+        android:id="@+id/text_view_corner_timer_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_24dp"
-        android:textColor="@color/blue"
-        android:backgroundTint="@color/black"
-        android:text="@string/home_button_text"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:text="@string/timer_text"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/large_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/text_view_corner_timer_header"
+        app:layout_constraintStart_toStartOf="@+id/text_view_corner_timer_header"
+        app:layout_constraintTop_toBottomOf="@id/text_view_corner_timer_header"
+        android:text="@string/timer_starting_text" />
 
     <TextView
         android:id="@+id/text_view_corner_player_header"
@@ -26,11 +42,12 @@
         android:layout_height="wrap_content"
         android:text="@string/player_header"
         android:textColor="@color/gray"
+        android:layout_marginTop="@dimen/margin_24dp"
         android:layout_marginEnd="48dp"
         android:textSize="@dimen/medium_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/button_home" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_corner_player_name"
@@ -53,7 +70,7 @@
         android:backgroundTint="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_home">
+        app:layout_constraintTop_toBottomOf="@id/text_view_corner_player_name">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -357,19 +374,19 @@
 
     <Button
         android:id="@+id/button_higher"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/black"
         android:text="@string/higher_button_text"
         android:textColor="@color/bright_green"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@+id/draw_pile"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/draw_pile"
+        app:layout_constraintTop_toTopOf="@+id/draw_pile" />
 
     <Button
         android:id="@+id/button_lower"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:text="@string/lower_button_text"
@@ -497,16 +514,26 @@
 
     <Button
         android:id="@+id/button_restart"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black"
         android:text="@string/restart_button_text"
         android:textColor="@color/orange"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/draw_pile"
-        app:layout_constraintCircleRadius="50dp"
         app:layout_constraintEnd_toStartOf="@+id/draw_pile"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/draw_pile"/>
+
+    <Button
+        android:id="@+id/button_home"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/home_button_text"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/draw_pile"
+        app:layout_constraintEnd_toStartOf="@+id/draw_pile"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

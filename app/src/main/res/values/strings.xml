@@ -22,7 +22,7 @@
     <string name="home_button_text">HOME</string>
     <string name="higher_button_text">HIGHER</string>
     <string name="lower_button_text">LOWER</string>
-    <string name="restart_button_text">RESTART\nGAME</string>
+    <string name="restart_button_text">RESTART</string>
 
     <string name="default_description">playing_card</string>
 
@@ -33,5 +33,8 @@
 
     <string name="winning_text">YOU WON!</string>
     <string name="losing_text">YOU LOST</string>
+    <string name="timer_text">TIME:</string>
+    <string name="timer_starting_text">00:00</string>
+    <string name="times_up_text">TIMES UP</string>
 
 </resources>
