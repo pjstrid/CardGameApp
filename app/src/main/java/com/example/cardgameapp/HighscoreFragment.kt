@@ -21,6 +21,8 @@ class HighscoreFragment : Fragment() {
         return binding.root
     }
 
+
+    // Sets the highscore with the top 10 results from the list
     override fun onResume() {
         super.onResume()
 

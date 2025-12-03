@@ -112,6 +112,7 @@ class GameActivity : AppCompatActivity() {
         binding.buttonHome.setOnClickListener {
             stopTimer()
 
+            // If winning game, send the result back to the HOME-menu and may be shown in the highscore
             if (cardsLeft == 0) {
                 val resultIntent = Intent().apply {
                     putExtra("updatedPlayer", currentPlayer)
@@ -181,10 +182,13 @@ class GameActivity : AppCompatActivity() {
         //  Won or lost game
         if (cardsLeft == 0) {
             stopTimer()
-            //  Hiding the HIGHER & LOWER buttons
+
+            //  Hiding the HIGHER & LOWER buttons and the RESTART
+            // to "force" the player to save the score
             binding.buttonHigher.visibility = View.INVISIBLE
             binding.buttonLower.visibility = View.INVISIBLE
             binding.buttonRestart.visibility = View.INVISIBLE
+            binding.buttonHome.text = "SAVE"
 
             showWinningText()
 

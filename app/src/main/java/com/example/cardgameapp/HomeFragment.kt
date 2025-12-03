@@ -14,7 +14,6 @@ import com.example.cardgameapp.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     lateinit var binding : FragmentHomeBinding
 
-
     private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
         if (result.resultCode == RESULT_OK) {
@@ -33,10 +32,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
