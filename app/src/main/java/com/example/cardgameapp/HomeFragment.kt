@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
             } else {
                 binding.editTextCreatePlayer.error = null
 
-                DataManager.currentPlayer = Player(input.uppercase(), "")
+                DataManager.currentPlayer = Player(input.uppercase(), 0)
 
                 binding.playerNameView.text = DataManager.currentPlayer.name
                 binding.buttonStartGame.visibility = View.VISIBLE

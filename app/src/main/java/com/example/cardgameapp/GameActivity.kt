@@ -187,8 +187,8 @@ class GameActivity : AppCompatActivity() {
 
             showWinningText()
 
-            currentPlayer.time = binding.textViewTimer.text.toString()
-            Log.d("...", currentPlayer.time)
+            currentPlayer.time = timerCount
+            Log.d("!!!", currentPlayer.time.toString())
 
         } else if (pileCount == 10) {
             stopTimer()
