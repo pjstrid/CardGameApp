@@ -112,12 +112,13 @@ class GameActivity : AppCompatActivity() {
         binding.buttonHome.setOnClickListener {
             stopTimer()
 
-            val resultIntent = Intent().apply {
-                putExtra("updatedPlayer", currentPlayer)
+            if (cardsLeft == 0) {
+                val resultIntent = Intent().apply {
+                    putExtra("updatedPlayer", currentPlayer)
+                }
+
+                setResult(RESULT_OK, resultIntent)
             }
-
-            setResult(RESULT_OK, resultIntent)
-
 
             finish()
         }
