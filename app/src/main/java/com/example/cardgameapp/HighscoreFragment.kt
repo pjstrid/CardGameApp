@@ -123,7 +123,7 @@ class HighscoreFragment : Fragment() {
         if (DataManager.top10List.size > 4 ) {
             binding.namePosition5.text = DataManager.top10List[4]?.name
 
-            val minutes = DataManager.top10List[5]?.time?.div(60)
+            val minutes = DataManager.top10List[4]?.time?.div(60)
             val seconds = DataManager.top10List[4]?.time?.rem(60)
 
             if (minutes != null) {
