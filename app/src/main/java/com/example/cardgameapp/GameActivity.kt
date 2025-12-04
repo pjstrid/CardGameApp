@@ -49,7 +49,7 @@ class GameActivity : AppCompatActivity() {
 //      Creates a shuffled deck of cards
         DataManager.createShuffledDeck()
 
-//  To check the full deck
+//      To check the full deck
         Log.i("...", "==================")
         var i = 1
         while (i < 53) {
@@ -112,15 +112,14 @@ class GameActivity : AppCompatActivity() {
         binding.buttonHome.setOnClickListener {
             stopTimer()
 
-            // If winning game, send the result back to the HOME-menu and may be shown in the highscore
-            if (cardsLeft == 0) {
-                val resultIntent = Intent().apply {
-                    putExtra("updatedPlayer", currentPlayer)
-                }
-
-                setResult(RESULT_OK, resultIntent)
-            }
-
+//            // If winning game, send the result back to the HOME-menu and may be shown in the highscore
+//            if (cardsLeft == 0) {
+//                val resultIntent = Intent().apply {
+//                    putExtra("updatedPlayer", currentPlayer)
+//                }
+//
+//                setResult(RESULT_OK, resultIntent)
+//            }
             finish()
         }
     }
@@ -193,7 +192,8 @@ class GameActivity : AppCompatActivity() {
             showWinningText()
 
             currentPlayer.time = timerCount
-            Log.d("!!!", currentPlayer.time.toString())
+
+            DataManager.addToHighscore(currentPlayer)
 
         } else if (pileCount == 10) {
             stopTimer()
@@ -288,7 +288,7 @@ class GameActivity : AppCompatActivity() {
                 delay(1500)
                 closePile(pileCount)
 
-                if (pileCount < 10) {
+                if (pileCount < 10 && cardsLeft != 0) {
                     binding.buttonHigher.visibility = View.VISIBLE
                     binding.buttonLower.visibility = View.VISIBLE
                 }
@@ -336,65 +336,31 @@ class GameActivity : AppCompatActivity() {
         var correctGuess = false
 
         if (currentPileCard.value == 1) {
-
             if (theDrawCard.value == 1) {
-                Log.e(
-                    "!!!",
-                    "guess: $guess is wrong, ${theDrawCard.name} is the same value as ${currentPileCard.name} "
-                )
                 correctGuess = false
+
             } else {
-                Log.i(
-                    "!!!",
-                    "guess: $guess is true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}"
-                )
                 correctGuess = true
             }
-
         } else if (theDrawCard.value == 1) {
-
-            Log.i(
-                "!!!",
-                "guess: $guess is true, ${theDrawCard.name} is higher or lower than ${currentPileCard.name}"
-            )
             correctGuess = true
 
         } else if (theDrawCard.value == currentPileCard.value) {
-            Log.e(
-                "!!!",
-                "guess: $guess is wrong, ${theDrawCard.name} is the same value as ${currentPileCard.name}"
-            )
             correctGuess = false
 
         } else if (theDrawCard.value < currentPileCard.value) {
-
             if (guess == "higher") {
-                Log.e(
-                    "!!!",
-                    "guess: $guess is wrong, ${theDrawCard.name} is lower than ${currentPileCard.name}"
-                )
                 correctGuess = false
+
             } else if (guess == "lower") {
-                Log.i(
-                    "!!!",
-                    "guess: $guess is true, ${theDrawCard.name} is lower than ${currentPileCard.name}"
-                )
                 correctGuess = true
             }
-
         } else { //  if (theDrawCard.value > currentPileCard.value)
 
             if (guess == "higher") {
-                Log.i(
-                    "!!!",
-                    "guess: $guess is true, ${theDrawCard.name} is higher than ${currentPileCard.name}"
-                )
                 correctGuess = true
+
             } else if (guess == "lower") {
-                Log.e(
-                    "!!!",
-                    "guess: $guess is wrong, ${theDrawCard.name} is higher than ${currentPileCard.name}"
-                )
                 correctGuess = false
             }
         }

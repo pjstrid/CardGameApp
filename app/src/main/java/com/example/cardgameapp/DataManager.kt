@@ -6,12 +6,21 @@ object DataManager {
 
     lateinit var currentPlayer: Player
 
-    var top10List: MutableList<Player?> = mutableListOf()
+    var listOfScores: MutableList<Player?> = mutableListOf()
 
     //  Function for creating the deck as a list and shuffle it straight away
-    fun setHighscore(player: Player) {
-        top10List.add(player)
+    fun addToHighscore(player: Player) {
+        listOfScores.add(player)
     }
+
+    fun createTop10List(): MutableList<Player?> {
+
+        if (listOfScores.isNotEmpty()) {
+            listOfScores.sortBy { it?.time }
+        }
+        return listOfScores
+    }
+
 
     //  Function for creating the deck as a list and shuffle it straight away
     fun createShuffledDeck() {

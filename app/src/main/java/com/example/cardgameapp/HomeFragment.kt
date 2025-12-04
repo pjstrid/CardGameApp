@@ -14,25 +14,6 @@ import com.example.cardgameapp.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     lateinit var binding : FragmentHomeBinding
 
-    private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result ->
-        if (result.resultCode == RESULT_OK) {
-
-            val updatedPlayer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                result.data?.getSerializableExtra("updatedPlayer", Player::class.java)
-            } else {
-                result.data?.getSerializableExtra("updatedPlayer") as Player
-            }
-
-            if (updatedPlayer != null) {
-                DataManager.currentPlayer = updatedPlayer
-            }
-            DataManager.setHighscore(DataManager.currentPlayer)
-
-        }
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,9 +48,8 @@ class HomeFragment : Fragment() {
         binding.buttonStartGame.setOnClickListener {
             val intent = Intent(activity, GameActivity::class.java)
             intent.putExtra("currentPlayer", DataManager.currentPlayer)
-            editLauncher.launch(intent)
+            startActivity(intent)
         }
     }
-
 
 }
