@@ -10,11 +10,12 @@ class PagerAdapter (activity: FragmentActivity) : FragmentStateAdapter(activity)
     override fun createFragment(position: Int): Fragment {
 
         return when (position) {
-            0 -> HomeFragment()
-            1 -> HighscoreFragment()
+            0 -> HowToPlayFragment()
+            1 -> HomeFragment()
+            2 -> HighscoreFragment()
             else -> HomeFragment()
         }
     }
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
 }

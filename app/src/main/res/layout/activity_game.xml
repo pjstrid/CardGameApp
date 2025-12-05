@@ -13,7 +13,7 @@
         android:id="@+id/text_view_corner_timer_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="@dimen/margin_48dp"
         android:layout_marginTop="@dimen/margin_24dp"
         android:text="@string/timer_text"
         android:textColor="@color/gray"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_24dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="@dimen/margin_48dp"
         android:text="@string/player_header"
         android:textColor="@color/gray"
         android:textSize="@dimen/medium_text_size"
@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="@id/text_view_corner_player_header"
         app:layout_constraintStart_toStartOf="@+id/text_view_corner_player_header"
         app:layout_constraintTop_toBottomOf="@id/text_view_corner_player_header"
-        tools:text="PLAYER ONE" />
+        tools:text="@string/tools_player_one" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/playing_field"
@@ -108,7 +108,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -140,7 +140,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
             </androidx.cardview.widget.CardView>
@@ -171,7 +171,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -203,7 +203,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -235,7 +235,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -267,7 +267,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -299,7 +299,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -331,7 +331,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -363,7 +363,7 @@
                     android:paddingBottom="@dimen/margin_8dp"
                     android:text="@string/x_icon"
                     android:textColor="@color/black"
-                    android:textSize="92sp"
+                    android:textSize="@dimen/text_size_X"
                     android:textStyle="bold"
                     android:visibility="invisible" />
 
@@ -509,7 +509,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/large_text_size"
             android:textStyle="bold"
-            tools:text="YOU LOST" />
+            tools:text="@string/tools_result_text" />
     </androidx.cardview.widget.CardView>
 
     <Button

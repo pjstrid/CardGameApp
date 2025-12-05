@@ -22,11 +22,12 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(binding.bottomNavigation, binding.viewPager) {tab, position ->
             tab.text = when(position) {
-                0 -> "HOME"
-                1 -> "HIGHSCORE"
+                0 -> "HOW TO PLAY"
+                1 -> "HOME"
+                2 -> "HIGHSCORE"
                 else -> ""
             }
         }.attach()
-
+        binding.viewPager.currentItem = 1
     }
 }

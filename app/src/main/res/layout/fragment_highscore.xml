@@ -11,10 +11,10 @@
         android:id="@+id/text_view_highscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="HIGHSCORE"
+        android:layout_marginTop="@dimen/margin_48dp"
+        android:text="@string/highscore_header_text"
         android:textColor="@color/light_gray"
-        android:textSize="32sp"
+        android:textSize="@dimen/extra_large_text_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,10 @@
         android:layout_margin="@dimen/margin_16dp"
         android:backgroundTint="@color/blue"
         app:cardCornerRadius="@dimen/radius_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -42,9 +42,9 @@
                 android:id="@+id/top_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TOP 10"
+                android:text="@string/top_10_header_text"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/large_text_size"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_72dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:text="NAME"
+                android:text="@string/name_text"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/medium_large_text_size"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/top_10" />
@@ -75,7 +75,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/text_view_name"
-                tools:text="PLAYER ONE" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_2"
@@ -89,7 +89,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_1"
-                tools:text="PLAYER 2" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_3"
@@ -103,7 +103,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_2"
-                tools:text="PLAYER 3" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_4"
@@ -117,7 +117,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_3"
-                tools:text="PLAYER 4" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_5"
@@ -131,7 +131,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_4"
-                tools:text="PLAYER 5" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_6"
@@ -145,7 +145,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_5"
-                tools:text="PLAYER 6" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_7"
@@ -159,7 +159,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_6"
-                tools:text="PLAYER 7" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_8"
@@ -173,7 +173,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_7"
-                tools:text="PLAYER 8" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_9"
@@ -187,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_8"
-                tools:text="PLAYER 9" />
+                tools:text="@string/tools_player_one" />
 
             <TextView
                 android:id="@+id/name_position_10"
@@ -201,7 +201,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_name"
                 app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_9"
-                tools:text="PLAYER 10" />
+                tools:text="@string/tools_player_one" />
 
 
             <TextView
@@ -210,9 +210,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:layout_marginEnd="@dimen/margin_72dp"
-                android:text="TIME"
+                android:text="@string/time_text"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/medium_large_text_size"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/top_10" />
@@ -229,7 +229,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/text_view_time"
                 app:layout_constraintStart_toStartOf="@+id/text_view_time"
                 app:layout_constraintTop_toBottomOf="@id/text_view_time"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_2"
@@ -242,7 +242,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_1"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_3"
@@ -255,7 +255,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_2"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_4"
@@ -268,7 +268,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_3"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_5"
@@ -281,7 +281,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_4"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_6"
@@ -294,7 +294,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_5"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_7"
@@ -307,7 +307,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_6"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_8"
@@ -320,7 +320,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_7"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_9"
@@ -333,7 +333,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_8"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
             <TextView
                 android:id="@+id/time_position_10"
@@ -346,7 +346,7 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/time_position_1"
                 app:layout_constraintTop_toBottomOf="@id/time_position_9"
-                tools:text="00:00" />
+                tools:text="@string/tools_time_text" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -357,13 +357,13 @@
         android:id="@+id/button_reset_highscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="RESET SCORES"
         android:layout_marginTop="@dimen/margin_16dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/reset_scores_button_text"
         android:textColor="@color/orange"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/highscore_field"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/highscore_field" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

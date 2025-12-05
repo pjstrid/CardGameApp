@@ -111,15 +111,6 @@ class GameActivity : AppCompatActivity() {
 //      Return to MainActivity / "HOME" when pressing the "HOME-Button"
         binding.buttonHome.setOnClickListener {
             stopTimer()
-
-//            // If winning game, send the result back to the HOME-menu and may be shown in the highscore
-//            if (cardsLeft == 0) {
-//                val resultIntent = Intent().apply {
-//                    putExtra("updatedPlayer", currentPlayer)
-//                }
-//
-//                setResult(RESULT_OK, resultIntent)
-//            }
             finish()
         }
     }
@@ -335,9 +326,7 @@ class GameActivity : AppCompatActivity() {
     private fun compareCards(guess: String): Boolean {
         var correctGuess = false
 
-        if (currentPileCard.value == 1) {
-            correctGuess = theDrawCard.value != 1
-        } else if (theDrawCard.value == 1) {
+        if (currentPileCard.value == 1 || theDrawCard.value == 1) {
             correctGuess = true
 
         } else if (theDrawCard.value == currentPileCard.value) {

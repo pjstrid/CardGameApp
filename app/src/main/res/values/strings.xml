@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">CardGameApp</string>
 
-    <!--   MainActivity  -->
+    <!--   Tools texts  -->
+    <string name="tools_time_text">00:00</string>
+    <string name="tools_player_one">PLAYER ONE</string>
+    <string name="tools_result_text">YOU LOST</string>
+
+    <!--   HomeFragment  -->
     <string name="game_name_text">CLEAR THE DECK</string>
 
     <string name="enter_name_text">ENTER YOUR NAME:</string>
@@ -36,5 +41,49 @@
     <string name="timer_text">TIME:</string>
     <string name="timer_starting_text">00:00</string>
     <string name="times_up_text">TIMES UP</string>
+
+    <!--   HighscoreFragment  -->
+    <string name="highscore_header_text">HIGHSCORE</string>
+    <string name="top_10_header_text">TOP 10</string>
+    <string name="time_text">TIME</string>
+    <string name="name_text">NAME</string>
+    <string name="reset_scores_button_text">RESET SCORES</string>
+
+    <!--   HowToPlayFragment  -->
+    <string name="howtoplay_header_text">🃏 HOW TO PLAY</string>
+
+    <string name="howtoplay_info_title_1">SETUP</string>
+    <string name="howtoplay_info_text_1">
+-	Nine piles are dealt from a shuffled deck of cards,\n
+        each with one card faced down\n
+-	One card is revealed on the starting pile\n
+-	The rest of the deck becomes the draw pile\n</string>
+
+    <string name="howtoplay_info_title_2">YOUR GOAL</string>
+    <string name="howtoplay_info_text_2">
+-	Guess whether the next card drawn will be HIGHER\n
+        or LOWER than the card on the open pile\n</string>
+
+    <string name="howtoplay_info_title_3">MAKING A GUESS</string>
+    <string name="howtoplay_info_text_3">
+-	Tap buttons: HIGHER or LOWER, to make your guess\n\n
+•	If your guess is CORRECT:\n
+-	The drawn card replaces the card on the open pile\n
+-	Next move is on the same pile\n\n
+•	If your guess is INCORRECT:\n
+-	The open pile gets closed\n
+-	The game move on to the next pile\n</string>
+
+    <string name="howtoplay_info_title_4">CARD RULES</string>
+    <string name="howtoplay_info_text_4">
+-	If the drawn card has the same value as the card on the pile,\n
+        the guess is always counted as incorrect\n
+-	A drawn Ace is always correct\n</string>
+
+    <string name="howtoplay_info_title_5">WINNING or LOSING</string>
+    <string name="howtoplay_info_text_5">
+-	You win if you play through and CLEAR THE DECK\n
+-	You lose if all nine piles are closed
+</string>
 
 </resources>

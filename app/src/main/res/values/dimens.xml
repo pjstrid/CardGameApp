@@ -13,19 +13,27 @@
     <dimen name="margin_16dp">16dp</dimen>
     <dimen name="margin_18dp">18dp</dimen>
     <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_64dp">64dp</dimen>
+    <dimen name="margin_72dp">72dp</dimen>
 
     <dimen name="draw_pile_width">92dp</dimen>
     <dimen name="draw_pile_height">128dp</dimen>
+
+    <dimen name="button_width">110dp</dimen>
+
+    <dimen name="edit_text_width">256dp</dimen>
 
     <dimen name="elevation_effect_margin_height">6dp</dimen>
     <dimen name="elevation_effect_margin_width">8dp</dimen>
 
 <!--    TEXT SIZES   -->
+    <dimen name="small_text_size">12sp</dimen>
     <dimen name="medium_text_size">16sp</dimen>
+    <dimen name="medium_large_text_size">20sp</dimen>
     <dimen name="large_text_size">24sp</dimen>
-    <dimen name="button_width">110dp</dimen>
-    <dimen name="margin_32dp">32dp</dimen>
-    <dimen name="margin_72dp">72dp</dimen>
+    <dimen name="extra_large_text_size">32sp</dimen>
+    <dimen name="text_size_X">92sp</dimen>
+
 </resources>
