@@ -22,7 +22,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var currentPlayer: Player
 
     private var cardCount = 0
-    private var cardsLeft = 43
+    private var cardsLeft = 52
 
     private var firstNineCardsList = mutableListOf<Card>()
     private lateinit var currentPile: ImageView
@@ -39,10 +39,10 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 //      Get player name from MainActivity and add to the Layout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            currentPlayer = intent.getSerializableExtra("currentPlayer", Player::class.java)!!
+        currentPlayer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getSerializableExtra("currentPlayer", Player::class.java)!!
         } else {
-            currentPlayer = intent.getSerializableExtra("currentPlayer") as Player
+            intent.getSerializableExtra("currentPlayer") as Player
         }
         binding.textViewCornerPlayerName.text = currentPlayer.name
 
@@ -186,14 +186,13 @@ class GameActivity : AppCompatActivity() {
             // to "force" the player to save the score
             binding.buttonHigher.visibility = View.INVISIBLE
             binding.buttonLower.visibility = View.INVISIBLE
-            binding.buttonRestart.visibility = View.INVISIBLE
-            binding.buttonHome.text = "SAVE"
 
             showWinningText()
 
             currentPlayer.time = timerCount
 
             DataManager.addToHighscore(currentPlayer)
+            saveToPrefs(this, DataManager.listOfScores)
 
         } else if (pileCount == 10) {
             stopTimer()
@@ -229,6 +228,7 @@ class GameActivity : AppCompatActivity() {
 
             cardCount++
             dealingPilesCount++
+            cardsLeft--
         }
     }
 
@@ -336,12 +336,7 @@ class GameActivity : AppCompatActivity() {
         var correctGuess = false
 
         if (currentPileCard.value == 1) {
-            if (theDrawCard.value == 1) {
-                correctGuess = false
-
-            } else {
-                correctGuess = true
-            }
+            correctGuess = theDrawCard.value != 1
         } else if (theDrawCard.value == 1) {
             correctGuess = true
 

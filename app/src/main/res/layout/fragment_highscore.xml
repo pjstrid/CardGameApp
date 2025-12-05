@@ -86,7 +86,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_1"
                 tools:text="PLAYER 2" />
 
@@ -99,7 +100,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_2"
                 tools:text="PLAYER 3" />
 
@@ -112,7 +114,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_3"
                 tools:text="PLAYER 4" />
 
@@ -125,7 +128,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_4"
                 tools:text="PLAYER 5" />
 
@@ -138,7 +142,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_5"
                 tools:text="PLAYER 6" />
 
@@ -151,7 +156,8 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_6"
                 tools:text="PLAYER 7" />
 
@@ -164,7 +170,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_7"
                 tools:text="PLAYER 8" />
 
@@ -177,7 +184,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_8"
                 tools:text="PLAYER 9" />
 
@@ -190,7 +198,8 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/name_position_1"
+                app:layout_constraintEnd_toEndOf="@+id/text_view_name"
+                app:layout_constraintStart_toStartOf="@+id/text_view_name"
                 app:layout_constraintTop_toBottomOf="@id/name_position_9"
                 tools:text="PLAYER 10" />
 

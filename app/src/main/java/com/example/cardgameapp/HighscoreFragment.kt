@@ -19,6 +19,11 @@ class HighscoreFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        DataManager.listOfScores = loadFromPrefs(requireContext())
+    }
+
     // Sets the highscore with the top 10 results from the list
     override fun onResume() {
         super.onResume()
@@ -34,17 +39,17 @@ class HighscoreFragment : Fragment() {
 
             if (minutes != null) {
                 if (seconds != null) {
-                    if (minutes < 10 && seconds < 10) {
-                        correctedTime = "0$minutes:0$seconds"
+                    correctedTime = if (minutes < 10 && seconds < 10) {
+                        "0$minutes:0$seconds"
 
                     } else if (minutes < 10) {
-                        correctedTime = "0$minutes:$seconds"
+                        "0$minutes:$seconds"
 
                     } else if (seconds < 10) {
-                        correctedTime = "$minutes:0$seconds"
+                        "$minutes:0$seconds"
 
                     } else {
-                        correctedTime = "$minutes:$seconds"
+                        "$minutes:$seconds"
                     }
                 }
             }

@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 
 // Functions to save and load the highscore list
 
-fun saveToPrefs(context: Context, players: List<Player>) {
+fun saveToPrefs(context: Context, players: MutableList<Player?>) {
     val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
     val editor = prefs.edit()
 
@@ -18,15 +18,21 @@ fun saveToPrefs(context: Context, players: List<Player>) {
 }
 
 
-fun loadFromPrefs(context: Context) : List<Player> {
+fun loadFromPrefs(context: Context) : MutableList<Player?> {
     val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-    val gson = Gson()
+//    val gson = Gson()
 
     val json = prefs.getString("players_key", null)
-    val type = object: TypeToken<List<Player>>() {}.type
-
-    val highScoreList: List<Player> = gson.fromJson(json, type)
-
-    return highScoreList
+//    val type = object: TypeToken<MutableList<Player>>() {}.type
+    return try {
+        val type = object : TypeToken<MutableList<Player>>() {}.type
+        Gson().fromJson<MutableList<Player?>>(json, type) ?: mutableListOf()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        mutableListOf()
+    }
+//    val highScoreList: MutableList<Player?> = gson.fromJson(json, type)
+//
+//    return highScoreList
 }
 
