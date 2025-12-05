@@ -20,10 +20,8 @@ fun saveToPrefs(context: Context, players: MutableList<Player?>) {
 
 fun loadFromPrefs(context: Context) : MutableList<Player?> {
     val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
-//    val gson = Gson()
-
     val json = prefs.getString("players_key", null)
-//    val type = object: TypeToken<MutableList<Player>>() {}.type
+
     return try {
         val type = object : TypeToken<MutableList<Player>>() {}.type
         Gson().fromJson<MutableList<Player?>>(json, type) ?: mutableListOf()
@@ -31,8 +29,11 @@ fun loadFromPrefs(context: Context) : MutableList<Player?> {
         e.printStackTrace()
         mutableListOf()
     }
-//    val highScoreList: MutableList<Player?> = gson.fromJson(json, type)
-//
-//    return highScoreList
+
+}
+
+fun clearPrefs(context: Context) {
+    val prefs = context.getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+    prefs.edit().remove("players_key").apply()
 }
 
